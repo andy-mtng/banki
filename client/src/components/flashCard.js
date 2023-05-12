@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function FlashCard(props) {
     const [front, setFront] = useState(props.front);
@@ -6,6 +6,7 @@ function FlashCard(props) {
     const [id, setId] = useState(props.id);
 
     const handleDelete = () => {
+        console.log("In FlashCard.js", id);
         props.deleteFlashCard(id);
     }
 

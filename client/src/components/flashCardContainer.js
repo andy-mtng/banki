@@ -1,15 +1,27 @@
 import "../styles/flashcards.css";
+import { useEffect, useState } from "react";
+import FlashCard from "./FlashCard";
 
-function flashCardContainer(props) {
+function FlashCardContainer(props) {
     const flashCards = props.flashCards;
+    const [flashCardsStateLocal, setFlashCardsStateLocal] = useState(0); // initialize to 0
+
+    useEffect(() => {
+        setFlashCardsStateLocal(props.flashCardsState);
+    }, [props.flashCardsState]);
 
     return (
         <div className="flash-card-container">
             {flashCards.map((flashCard) => {
-                return <div key={flashCard.props.id}>{flashCard}</div>
+                return <FlashCard 
+                            id={flashCard.id} 
+                            key={flashCard.key}
+                            front={flashCard.front} 
+                            back={flashCard.back} 
+                            deleteFlashCard={props.deleteFlashCard}/>
             })}
         </div>
     ) 
 }
 
-export default flashCardContainer;
+export default FlashCardContainer;

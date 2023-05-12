@@ -1,5 +1,4 @@
 import { useState } from "react";
-import FlashCard from "./FlashCard";
 import "../styles/forms.css"
 
 function FlashCardForm(props) {
@@ -17,13 +16,13 @@ function FlashCardForm(props) {
   
     const handleSubmit = (event) => {
         event.preventDefault(); 
-        console.log('Input value:', newCardFront, newCardBack);
-        props.addFlashCard(<FlashCard 
-            id={nextId} 
-            front={newCardFront} 
-            back={newCardBack} 
-            deleteFlashCard={props.deleteFlashCard}
-            />)
+        console.log('Input value:', newCardFront, newCardBack, nextId);
+        props.addFlashCard({
+            id: nextId,
+            key: nextId,
+            front: newCardFront,
+            back: newCardBack,
+        })
         setNextId(nextId + 1);
         setNewCardFront('');
         setNewCardBack('');
