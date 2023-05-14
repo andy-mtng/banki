@@ -27,12 +27,14 @@ function FlashCardForm(props) {
         console.log('Card Submission values:', cardFront, cardBack, nextId);
         
         if (!props.isEditing) {
-            props.addFlashCard({
+            const newFlashCard = {
                 id: nextId,
                 key: nextId,
                 front: cardFront,
                 back: cardBack,
-            });
+            }
+            props.addFlashCard(newFlashCard);
+            createFlashCard(newFlashCard);
             setNextId(nextId + 1);
         } else {
             props.editFlashCard({
@@ -45,6 +47,19 @@ function FlashCardForm(props) {
 
         setCardFront('');
         setCardBack('');
+    }
+
+    const createFlashCard = async (flashCardObj) => {
+        console.log("createFlashCard()");
+        fetch("http://localhost:5000/flashcard", {
+            method: "POST",
+            body: JSON.stringify(flashCardObj)
+        })
+        .then((response) => response.json())
+        .then((json) => console.log(json))
+        .catch(error => {
+            console.error('There was a problem with the request:', error);
+        });
     }
 
 
