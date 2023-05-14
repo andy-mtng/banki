@@ -9,8 +9,12 @@ function App() {
   const [flashCards, setFlashCards] = useState([]);
   const [flashCardsState, setFlashCardsState] = useState(0); 
   const [showForm, setShowForm] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [flashCardToEdit, setFlashCardToEdit] = useState({});
+
 
   const handleAddCardButtonClick = () => {
+    setIsEditing(false);
     setShowForm(true);
   }
 
@@ -33,9 +37,29 @@ function App() {
   }
 
 
-  const editFlashCard = (editId) => {
+  const getFlashCardToEdit = (editId) => {
+    console.log("editFlashCard(); inside app:", editId);
+    setIsEditing(true);
+    const cardToEdit = flashCards.find(flashCard => flashCard.id === editId);
+    setFlashCardToEdit(cardToEdit);
+    setShowForm(true);
     // Find flash card to edit
     // Change fields in flash card
+  }
+
+
+  const editFlashCard = (editedFlashCard) => {
+    const updatedFlashCards = flashCards.map(flashCard => {
+      if (flashCard.id === editedFlashCard.id) {
+        return editedFlashCard;
+      } else {
+        return flashCard;
+      }
+    })
+    setFlashCards(updatedFlashCards);
+    setFlashCardToEdit({});
+    setIsEditing(false);
+    setFlashCardsState(flashCardsState + 1); // increment state to trigger re-render
   }
 
   
@@ -48,12 +72,17 @@ function App() {
     <div>
       <Navbar />
       <button onClick={handleAddCardButtonClick}>Add New Card +</button>
-      { showForm && <FlashCardForm addFlashCard={addFlashCard} handleXButtonClick={handleXButtonClick}/> }
+      { showForm && <FlashCardForm 
+        isEditing={isEditing} 
+        addFlashCard={addFlashCard} 
+        editFlashCard={editFlashCard}
+        handleXButtonClick={handleXButtonClick}
+        flashCardToEdit={isEditing ? flashCardToEdit : {}}/> }
       <FlashCardContainer 
         flashCards={flashCards} 
         flashCardsState={flashCardsState} 
         deleteFlashCard={deleteFlashCard} 
-        editFlashCard={editFlashCard}/>
+        getFlashCardToEdit={getFlashCardToEdit}/>
     </div>
   );
 }

@@ -5,16 +5,19 @@ function FlashCard(props) {
     const [back, setBack] = useState(props.back);
     const [id, setId] = useState(props.id);
 
+
     const handleDelete = () => {
         console.log("handleDelete(); in FlashCard.js", id);
         props.deleteFlashCard(id);
     }
 
+
     const handleEdit = () => {
         console.log("handleEdit(); in FlashCard.js", id);
-        props.editFlashCard(id);
+        props.getFlashCardToEdit(id);
     }
 
+    
     return (
         <div className="flash-card">
             <h1>Front: {front}</h1>

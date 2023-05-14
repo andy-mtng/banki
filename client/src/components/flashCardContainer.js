@@ -19,7 +19,7 @@ function FlashCardContainer(props) {
                             front={flashCard.front} 
                             back={flashCard.back} 
                             deleteFlashCard={props.deleteFlashCard}
-                            editFlashCard={props.editFlashCard}/>
+                            getFlashCardToEdit={props.getFlashCardToEdit}/>
             })}
         </div>
     ) 
