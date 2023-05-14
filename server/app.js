@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const bodyParser = require('body-parser');
 
 require("dotenv").config()
 const flashCardRouter = require("./routes/flashcardRoutes.js");
@@ -13,8 +12,9 @@ const port = 5000;
 mongoose.set("strictQuery", false);
 
 app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(express.json());
+
 app.use("/flashcard", flashCardRouter);
-app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
     res.send("Home");

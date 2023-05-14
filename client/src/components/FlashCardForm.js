@@ -50,9 +50,12 @@ function FlashCardForm(props) {
     }
 
     const createFlashCard = async (flashCardObj) => {
-        console.log("createFlashCard()");
+        console.log("createFlashCard()", flashCardObj);
         fetch("http://localhost:5000/flashcard", {
             method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify(flashCardObj)
         })
         .then((response) => response.json())
