@@ -43,8 +43,6 @@ function App() {
     const cardToEdit = flashCards.find(flashCard => flashCard.id === editId);
     setFlashCardToEdit(cardToEdit);
     setShowForm(true);
-    // Find flash card to edit
-    // Change fields in flash card
   }
 
 

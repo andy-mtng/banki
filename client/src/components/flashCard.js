@@ -28,8 +28,8 @@ function FlashCard(props) {
         <div className="flash-card">
             <h1>Front: {front}</h1>
             <h1>Back: {back}</h1>
-            <button onClick={handleDelete}>Delete</button>
             <button onClick={handleEdit}>Edit</button>
+            <button onClick={handleDelete}>Delete</button>
         </div>
     );
 }
