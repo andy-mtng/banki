@@ -8,6 +8,15 @@ import "./styles/general.css";
 function App() {
   const [flashCards, setFlashCards] = useState([]);
   const [flashCardsState, setFlashCardsState] = useState(0); 
+  const [showForm, setShowForm] = useState(false);
+
+  const handleAddCardButtonClick = () => {
+    setShowForm(true);
+  }
+
+  const handleXButtonClick = () => {
+    setShowForm(false);
+  }
 
 
   const addFlashCard = (newFlashCard) => {
@@ -16,13 +25,17 @@ function App() {
 
 
   const deleteFlashCard = (delId) => {
-      console.log("Inside App.js. FlashCards array before:", flashCards);
       const updatedFlashCards = flashCards.filter(flashCard => {
-        console.log(`FILTERING -- flashCard id: ${flashCard.id}, delId: ${delId}`);
         return flashCard.id !== delId;
       });
       setFlashCards(updatedFlashCards);
       setFlashCardsState(flashCardsState + 1); // increment state to trigger re-render
+  }
+
+
+  const editFlashCard = (editId) => {
+    // Find flash card to edit
+    // Change fields in flash card
   }
 
   
@@ -34,8 +47,13 @@ function App() {
   return (
     <div>
       <Navbar />
-      <FlashCardForm addFlashCard={addFlashCard} />
-      <FlashCardContainer flashCards={flashCards} flashCardsState={flashCardsState} deleteFlashCard={deleteFlashCard} />
+      <button onClick={handleAddCardButtonClick}>Add New Card +</button>
+      { showForm && <FlashCardForm addFlashCard={addFlashCard} handleXButtonClick={handleXButtonClick}/> }
+      <FlashCardContainer 
+        flashCards={flashCards} 
+        flashCardsState={flashCardsState} 
+        deleteFlashCard={deleteFlashCard} 
+        editFlashCard={editFlashCard}/>
     </div>
   );
 }

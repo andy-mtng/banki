@@ -6,8 +6,13 @@ function FlashCard(props) {
     const [id, setId] = useState(props.id);
 
     const handleDelete = () => {
-        console.log("In FlashCard.js", id);
+        console.log("handleDelete(); in FlashCard.js", id);
         props.deleteFlashCard(id);
+    }
+
+    const handleEdit = () => {
+        console.log("handleEdit(); in FlashCard.js", id);
+        props.editFlashCard(id);
     }
 
     return (
@@ -15,6 +20,7 @@ function FlashCard(props) {
             <h1>Front: {front}</h1>
             <h1>Back: {back}</h1>
             <button onClick={handleDelete}>Delete</button>
+            <button onClick={handleEdit}>Edit</button>
         </div>
     );
 }
