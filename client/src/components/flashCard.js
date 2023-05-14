@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function FlashCard(props) {
     const [front, setFront] = useState(props.front);
@@ -17,7 +17,13 @@ function FlashCard(props) {
         props.getFlashCardToEdit(id);
     }
 
-    
+
+    useEffect(() => {
+        setFront(props.front);
+        setBack(props.back);
+    }, [props.front, props.back])
+
+
     return (
         <div className="flash-card">
             <h1>Front: {front}</h1>
