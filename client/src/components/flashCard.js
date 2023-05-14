@@ -25,7 +25,7 @@ function FlashCard(props) {
         } else {
             setIsFlipped(true);
             // Once the card is flipped, unflip it after certain amount of time automatically
-            setTimeout(() => setIsFlipped(false), 5000);
+            const timer = setTimeout(() => setIsFlipped(false), 5000);
         }
     }
 
