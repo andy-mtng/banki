@@ -7,4 +7,4 @@ const FlashCardModelSchema = new Schema({
     back: String
 });
 
-const FlashCard = mongoose.model("FlashCard", FlashCardModelSchema);
+module.exports = mongoose.model("FlashCard", FlashCardModelSchema);

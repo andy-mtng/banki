@@ -49,6 +49,7 @@ function FlashCardForm(props) {
         setCardBack('');
     }
 
+    
     const createFlashCard = async (flashCardObj) => {
         console.log("createFlashCard()", flashCardObj);
         fetch("http://localhost:5000/flashcard", {
