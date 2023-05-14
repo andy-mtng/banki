@@ -38,7 +38,6 @@ function App() {
 
 
   const getFlashCardToEdit = (editId) => {
-    console.log("editFlashCard(); inside app:", editId);
     setIsEditing(true);
     const cardToEdit = flashCards.find(flashCard => flashCard.id === editId);
     setFlashCardToEdit(cardToEdit);

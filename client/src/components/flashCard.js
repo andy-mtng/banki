@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 function FlashCard(props) {
     const [front, setFront] = useState(props.front);
     const [back, setBack] = useState(props.back);
+    const [isFlipped, setIsFlipped] = useState(false);
     const [id, setId] = useState(props.id);
 
 
@@ -18,6 +19,17 @@ function FlashCard(props) {
     }
 
 
+    const flipFlashCard = () => {
+        if (isFlipped) {
+            setIsFlipped(false);
+        } else {
+            setIsFlipped(true);
+            // Once the card is flipped, unflip it after certain amount of time automatically
+            setTimeout(() => setIsFlipped(false), 5000);
+        }
+    }
+
+
     useEffect(() => {
         setFront(props.front);
         setBack(props.back);
@@ -25,9 +37,8 @@ function FlashCard(props) {
 
 
     return (
-        <div className="flash-card">
-            <h1>Front: {front}</h1>
-            <h1>Back: {back}</h1>
+        <div className="flash-card" onClick={flipFlashCard}>
+            <h1>{isFlipped ? `Back: ${back}` : `Front: ${front}`}</h1>
             <button onClick={handleEdit}>Edit</button>
             <button onClick={handleDelete}>Delete</button>
         </div>
