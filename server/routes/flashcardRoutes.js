@@ -28,7 +28,10 @@ router.delete("/", (req, res) => {
 });
 
 router.put("/", (req, res) => {
-
+    const updatedFlashCard = req.body;
+    FlashCard.updateOne({ clientAssignedId: updatedFlashCard.id }, updatedFlashCard)
+        .then(result => { res.json({result: result}) })
+        .catch(err => { res.status(500).json({message: "Error: Flashcard not updated in database. " + err}) })
 });
 
 module.exports = router;
