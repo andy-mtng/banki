@@ -40,8 +40,8 @@ function App() {
   const getFlashCardToEdit = (editId) => {
     setIsEditing(true);
     const cardToEdit = flashCards.find(flashCard => flashCard.id === editId);
+    setShowForm(false);
     setFlashCardToEdit(cardToEdit);
-    setShowForm(true);
   }
 
 
@@ -56,8 +56,17 @@ function App() {
     setFlashCards(updatedFlashCards);
     setFlashCardToEdit({});
     setIsEditing(false);
+    setShowForm(false);
     setFlashCardsState(flashCardsState + 1); // increment state to trigger re-render
   }
+
+  useEffect(() => {
+    // Allows population of form with flashcard data if it is already up
+    // Checks if there is data to show (object is not empty)
+    if (Object.keys(flashCardToEdit).length > 0) {
+      setShowForm(true);
+    }
+  }, [flashCardToEdit]);
 
   
   useEffect(() => {

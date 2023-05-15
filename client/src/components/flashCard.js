@@ -7,7 +7,9 @@ function FlashCard(props) {
     const [id, setId] = useState(props.id);
 
 
-    const handleDelete = () => {
+    const handleDelete = (event) => {
+        // Prevents card flipping if delete button is pressed
+        event.stopPropagation();
         props.deleteFlashCard(id);
         deleteFlashCard(id);
     }
@@ -25,7 +27,9 @@ function FlashCard(props) {
     }
 
 
-    const handleEdit = () => {
+    const handleEdit = (event) => {
+        // Prevents card flipping if edit button is pressed
+        event.stopPropagation();
         props.getFlashCardToEdit(id);
     }
 
