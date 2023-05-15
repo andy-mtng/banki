@@ -10,10 +10,25 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
     const flashCardData = req.body;    
-    const newFlashCard = new FlashCard({front: flashCardData.front, back: flashCardData.back});
+    const newFlashCard = new FlashCard({
+        front: flashCardData.front, 
+        back: flashCardData.back,
+        clientAssignedId: flashCardData.id
+    });
     newFlashCard.save()
         .then(savedFlashCard => { res.json({message : "Flashcard saved to database."}) })
-        .catch(err => { res.status(500).json({message: "Error: Flashcard not saved to database"}) });
+        .catch(err => { res.status(500).json({message: "Error: Flashcard not saved to database. " + err}) });
+});
+
+router.delete("/", (req, res) => {
+    const delId = req.query.id;
+    FlashCard.deleteOne({ clientAssignedId: delId })
+        .then(queryResult => { res.json({message : "Flashcard deleted from database."}) })
+        .catch(err => { res.status(500).json({message: "Error: Flashcard not deleted from database. " + err}) });
+});
+
+router.put("/", (req, res) => {
+
 });
 
 module.exports = router;

@@ -8,13 +8,24 @@ function FlashCard(props) {
 
 
     const handleDelete = () => {
-        console.log("handleDelete(); in FlashCard.js", id);
         props.deleteFlashCard(id);
+        deleteFlashCard(id);
+    }
+
+
+    const deleteFlashCard = (delId) => {
+        fetch(`http://localhost:5000/flashcard?id=${delId}`, {
+            method: "DELETE"
+        })
+        .then((response) => response.json())
+        .then((json) => console.log(json))
+        .catch(error => {
+            console.error('There was a problem with the request:', error);
+        });
     }
 
 
     const handleEdit = () => {
-        console.log("handleEdit(); in FlashCard.js", id);
         props.getFlashCardToEdit(id);
     }
 
