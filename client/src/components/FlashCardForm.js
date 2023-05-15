@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 import "../styles/forms.css"
 
 function FlashCardForm(props) {
     const [cardFront, setCardFront] = useState(props.isEditing ? props.flashCardToEdit.front : '');
     const [cardBack, setCardBack] = useState(props.isEditing ? props.flashCardToEdit.back: '');
-    const [nextId, setNextId] = useState(1);
+    // const [nextId, setNextId] = useState(1);
 
 
     const handleInputChangeFront = (event) => {
@@ -24,18 +25,19 @@ function FlashCardForm(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault(); 
-        console.log('Card Submission values:', cardFront, cardBack, nextId);
+        console.log('Card Submission values:', cardFront, cardBack);
         
         if (!props.isEditing) {
+            const id = uuidv4();
             const newFlashCard = {
-                id: nextId,
-                key: nextId,
+                id: id,
+                key: id,
                 front: cardFront,
                 back: cardBack,
             }
+            console.log(newFlashCard);
             props.addFlashCard(newFlashCard);
             createFlashCard(newFlashCard);
-            setNextId(nextId + 1);
         } else {
             const editedFlashCard = {
                 id: props.flashCardToEdit.id,
