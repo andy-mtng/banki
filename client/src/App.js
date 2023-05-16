@@ -11,6 +11,7 @@ function App() {
   const [showForm, setShowForm] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [flashCardToEdit, setFlashCardToEdit] = useState({});
+  const [functionCallFlag, setFunctionCallFlag] = useState(0);
 
 
   const handleAddCardButtonClick = () => {
@@ -38,10 +39,12 @@ function App() {
 
 
   const getFlashCardToEdit = (editId) => {
+    console.log(editId);
     setIsEditing(true);
-    const cardToEdit = flashCards.find(flashCard => flashCard.id === editId);
     setShowForm(false);
+    const cardToEdit = flashCards.find(flashCard => flashCard.id === editId);
     setFlashCardToEdit(cardToEdit);
+    setFunctionCallFlag(functionCallFlag + 1);
   }
 
 
@@ -60,18 +63,25 @@ function App() {
     setFlashCardsState(flashCardsState + 1); // increment state to trigger re-render
   }
 
+  
   useEffect(() => {
     // Allows population of form with flashcard data if it is already up
     // Checks if there is data to show (object is not empty)
     if (Object.keys(flashCardToEdit).length > 0) {
       setShowForm(true);
     }
-  }, [flashCardToEdit]);
+    // functionCallFlag is used to run this hook everytime the edit form is meant to appear
+  }, [flashCardToEdit, functionCallFlag]);
 
   
   useEffect(() => {
     console.log("useEffect:", flashCards);
   }, [flashCards]);
+
+
+  useEffect(() => {
+    console.log(showForm);
+  }, [showForm]);
 
 
   return (
