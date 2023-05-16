@@ -63,7 +63,7 @@ function FlashCardForm(props) {
             body: JSON.stringify(flashCardObj)
         })
         .then((response) => response.json())
-        .then((json) => console.log(json))
+        .then((data) => console.log(data))
         .catch(error => {
             console.error("There was a problem with the request:", error);
         });
@@ -79,7 +79,7 @@ function FlashCardForm(props) {
             body: JSON.stringify(flashCardObj)
         })
         .then((response) => response.json())
-        .then((json) => console.log(json))
+        .then((data) => console.log(data))
         .catch(error => {
             console.log("There was a problem with the request:", error);
         })

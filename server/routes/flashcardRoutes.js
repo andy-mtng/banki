@@ -4,9 +4,7 @@ const flashCardController = require("../controllers/flashcard.js");
 
 router.use(express.json());
 
-router.get("/", (req, res) => {
-    res.json({message: "Hello"});
-});
+router.get("/", flashCardController.getFlashCards);
 
 router.post("/", flashCardController.createFlashCard);
 

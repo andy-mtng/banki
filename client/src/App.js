@@ -63,7 +63,35 @@ function App() {
     setFlashCardsState(flashCardsState + 1); // increment state to trigger re-render
   }
 
-  
+
+  const getFlashCards = async () => {
+    fetch("http://localhost:5000/flashcard", {
+      method: "GET"
+    })
+    .then(response => response.json())
+    .then((flashCardData) => {
+      const processedFlashCards = [];
+      console.log(flashCardData.flashCards);
+      flashCardData.flashCards.map(flashCard => {
+        processedFlashCards.push({                
+          id: flashCard.clientAssignedId,
+          key: flashCard.clientAssignedId,
+          front: flashCard.front,
+          back: flashCard.back})
+      })
+      setFlashCards(processedFlashCards);
+    })
+    .catch(error => {
+      console.error("There was a problem with the request:", error);
+    });
+  }
+
+
+  useEffect(() => {
+    getFlashCards();
+  }, []);
+
+
   useEffect(() => {
     // Allows population of form with flashcard data if it is already up
     // Checks if there is data to show (object is not empty)
@@ -77,11 +105,6 @@ function App() {
   useEffect(() => {
     console.log("useEffect:", flashCards);
   }, [flashCards]);
-
-
-  useEffect(() => {
-    console.log(showForm);
-  }, [showForm]);
 
 
   return (
