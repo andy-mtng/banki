@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import FlashCardContainer from "./components/FlashCardContainer";
 import Navbar from "./components/Navbar";
 import FlashCardForm from "./components/FlashCardForm";
@@ -12,7 +13,7 @@ function App() {
   const [isEditing, setIsEditing] = useState(false);
   const [flashCardToEdit, setFlashCardToEdit] = useState({});
   const [functionCallFlag, setFunctionCallFlag] = useState(0);
-
+  const { category } = useParams(); 
 
   const handleAddCardButtonClick = () => {
     setIsEditing(false);
@@ -110,6 +111,7 @@ function App() {
   return (
     <div>
       <Navbar />
+      <h1>{category}</h1>
       <button onClick={handleAddCardButtonClick}>Add New Card +</button>
       { showForm && <FlashCardForm 
         isEditing={isEditing} 
