@@ -9,6 +9,7 @@ function EditCategoriesForm(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log("editedCategory", editedCategory);
         props.getUpdatedCategoryName(editedCategory);
         setEditedCategory("");
     }

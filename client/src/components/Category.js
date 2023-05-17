@@ -15,17 +15,22 @@ function Category(props) {
     }
 
     const getUpdatedCategoryName = (updatedCategoryName) => {
-        // setCategoryName(updatedCategoryName);
-        // setEditing(false);
-        // props.editCategory({
-
-        // })
+        setCategoryName(updatedCategoryName);
+        setEditing(false);
+        props.editCategory({
+            clientAssignedId: clientAssignedId,
+            key: clientAssignedId,
+            categoryName: updatedCategoryName,
+            flashCards: props.flashCards
+        });
     }
 
     return (
         <div>
             <h1>{categoryName}</h1>
-            {editing && <EditCategoriesForm currentCategoryName={categoryName} getUpdatedCategoryName={getUpdatedCategoryName}/>}
+            {editing && <EditCategoriesForm 
+                currentCategoryName={categoryName} 
+                getUpdatedCategoryName={getUpdatedCategoryName}/>}
             <button onClick={toggleEditingOn}>Edit</button>
             <button onClick={handleDelete}>Delete</button>
         </div>
