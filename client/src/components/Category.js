@@ -8,13 +8,18 @@ function Category(props) {
 
     const handleDelete = () => {
         props.deleteCategory(clientAssignedId);
+        deleteCategory(clientAssignedId);
     }
 
-    const deleteCategory = async () => {
-        // fetch("http://localhost5000/category", {
-        //     method: "DELETE",
-
-        // })
+    const deleteCategory = async (delId) => {
+        fetch(`http://localhost:5000/category?id=${delId}`, {
+            method: "DELETE"
+        })
+        .then((response) => response.json() )
+        .then((data) => console.log(data) )
+        .catch(error => {
+            console.error('There was a problem with the request:', error);
+        });
     }
 
     const toggleEditingOn = () => {

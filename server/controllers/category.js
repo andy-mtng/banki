@@ -16,8 +16,10 @@ const createCategory = (req, res) => {
 }
 
 const deleteCategory = (req, res) => {
-    // get delId
-    // Find and delete that
+    const delId = req.query.id;
+    Category.deleteOne( {clientAssignedId: delId} )
+        .then(queryResult => { res.json({message : "Category deleted from database."}) })
+        .catch(err => { res.status(500).json({message: "Error: Category not deleted from database. " + err}) });
 }
 
 module.exports = {
