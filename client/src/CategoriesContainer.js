@@ -11,9 +11,21 @@ function CategoriesContainer() {
     }
 
     const deleteCategory = (delId) => {
+        console.log(delId);
         const updatedCategories = categories.filter((category) => {
             return category.clientAssignedId !== delId;
         })
+        setCategories(updatedCategories);
+    }
+
+    const editCategory = (editedCategory) => {
+        const updatedCategories = categories.map((category) => {
+            if (category.clientAssignedId === editedCategory.clientAssignedId) {
+                return editedCategory;
+            } else {
+                return category;
+            }
+        });
         setCategories(updatedCategories);
     }
 
@@ -28,10 +40,12 @@ function CategoriesContainer() {
             <AddCategoriesForm addCategory={addCategory}/>
             {categories.map((category) => {
                 return <Category 
-                            id={category.clientAssignedId}
+                            clientAssignedId={category.clientAssignedId}
                             key={category.key} 
+                            flashCards={category.flashCards}
                             categoryName={category.categoryName}
-                            deleteCategory={deleteCategory}/>
+                            deleteCategory={deleteCategory}
+                            editCategory={editCategory}/>
             })}
         </div>
     )
