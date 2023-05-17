@@ -10,6 +10,13 @@ function CategoriesContainer() {
         setCategories([...categories, newCategory]);
     }
 
+    const deleteCategory = (delId) => {
+        const updatedCategories = categories.filter((category) => {
+            return category.clientAssignedId !== delId;
+        })
+        setCategories(updatedCategories);
+    }
+
     useEffect(() => {
         console.log(categories);
     }, [categories]);
@@ -20,7 +27,11 @@ function CategoriesContainer() {
             <h1>Categories Page</h1>
             <AddCategoriesForm addCategory={addCategory}/>
             {categories.map((category) => {
-                return <Category key={category.key} categoryName={category.categoryName}/>
+                return <Category 
+                            id={category.clientAssignedId}
+                            key={category.key} 
+                            categoryName={category.categoryName}
+                            deleteCategory={deleteCategory}/>
             })}
         </div>
     )
