@@ -5,7 +5,6 @@ import "../styles/forms.css"
 function FlashCardForm(props) {
     const [cardFront, setCardFront] = useState(props.isEditing ? props.flashCardToEdit.front : '');
     const [cardBack, setCardBack] = useState(props.isEditing ? props.flashCardToEdit.back: '');
-    // const [nextId, setNextId] = useState(1);
 
 
     const handleInputChangeFront = (event) => {

@@ -15,11 +15,13 @@ function App() {
   const [functionCallFlag, setFunctionCallFlag] = useState(0);
   const { category } = useParams(); 
 
+
   const handleAddCardButtonClick = () => {
     setIsEditing(false);
     setShowForm(true);
   }
 
+  
   const handleXButtonClick = () => {
     setShowForm(false);
   }
