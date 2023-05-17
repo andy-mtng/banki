@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const CategoryModelSchema = new Schema({
     categoryName: String,
-    clientAssignedId: Number,
+    clientAssignedId: String,
     flashCards: [{
         type: mongoose.Schema.Types.ObjectId,
         // Name of the referenced collection

@@ -1,5 +1,5 @@
 const { get } = require("mongoose");
-const flashcard = require("../models/flashcard.js");
+// const flashcard = require("../models/flashcard.js");
 const FlashCard = require("../models/flashcard.js");
 
 const getFlashCards = (req, res) => {

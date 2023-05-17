@@ -10,6 +10,13 @@ function Category(props) {
         props.deleteCategory(clientAssignedId);
     }
 
+    const deleteCategory = async () => {
+        // fetch("http://localhost5000/category", {
+        //     method: "DELETE",
+
+        // })
+    }
+
     const toggleEditingOn = () => {
         setEditing(true);
     }

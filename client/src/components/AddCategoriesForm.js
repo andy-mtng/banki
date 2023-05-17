@@ -10,15 +10,31 @@ function CategoriesForm(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("CategoriesForm submission:", category);
         const id = uuidv4();
-        props.addCategory({
+        const newCategory = {
             clientAssignedId: id,
             key: id,
             categoryName: category,
             flashCards: []
-        });
+        }
+        props.addCategory(newCategory);
+        createCategory(newCategory);
         setCategory('');
+    }
+
+    const createCategory = async (categoryObj) => {
+        fetch("http://localhost:5000/category", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(categoryObj)
+        })
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch(error => {
+            console.error("There was a problem with the request:", error);
+        });
     }
 
     return (

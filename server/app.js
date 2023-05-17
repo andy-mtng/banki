@@ -4,6 +4,7 @@ const cors = require("cors");
 
 require("dotenv").config()
 const flashCardRouter = require("./routes/flashcardRoutes.js");
+const categoryRouter = require("./routes/categoryRoutes.js");
 // const homeRouter = require("./routes/homeRoutes.js");
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(cors({ origin: 'http://localhost:3000' }));
 app.use(express.json());
 
 app.use("/flashcard", flashCardRouter);
+app.use("/category", categoryRouter);
 // app.use("/", homeRouter);
 
 app.get("/", (req, res) => {

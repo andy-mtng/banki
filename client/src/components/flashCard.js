@@ -15,7 +15,7 @@ function FlashCard(props) {
     }
 
 
-    const deleteFlashCard = (delId) => {
+    const deleteFlashCard = async (delId) => {
         fetch(`http://localhost:5000/flashcard?id=${delId}`, {
             method: "DELETE"
         })
