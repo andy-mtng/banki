@@ -89,11 +89,9 @@ function App() {
     });
   }
 
-
   useEffect(() => {
     getFlashCards();
   }, []);
-
 
   useEffect(() => {
     // Allows population of form with flashcard data if it is already up

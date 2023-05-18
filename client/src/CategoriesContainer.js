@@ -29,6 +29,34 @@ function CategoriesContainer() {
         setCategories(updatedCategories);
     }
 
+    const getCategories = async () => {
+        fetch("http://localhost:5000/category", {
+            method: "GET"
+        })
+        .then((response) => { return response.json() })
+        .then((categoryData) => { 
+            console.log(categoryData);
+            const processedCategories = [];
+            
+            categoryData.categoriesArray.map((category) => {
+                processedCategories.push({
+                    clientAssignedId: category.clientAssignedId,
+                    key: category.clientAssignedId,
+                    categoryName: category.categoryName,
+                    flashCards: category.flashCards
+                });
+            setCategories(processedCategories);
+            });
+        })
+        .catch(error => {
+            console.error("There was a problem with the request:", error);
+        });
+    }
+
+    useEffect(() => {
+        getCategories();
+    }, []);
+
     useEffect(() => {
         console.log(categories);
     }, [categories]);

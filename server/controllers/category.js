@@ -1,5 +1,12 @@
 const Category = require("../models/category.js");
 
+const getCategories = (req, res) => {
+    console.log("API hit");
+    Category.find({})
+        .then((categoriesArray) => { res.json({categoriesArray: categoriesArray}) })
+        .catch(err => { res.status(500).json({message: "Error: Unable to retrieve categories from database. " + err}) })
+}
+
 const createCategory = (req, res) => {
     const categoryData = req.body;
     console.log(categoryData);
@@ -32,6 +39,7 @@ const deleteCategory = (req, res) => {
 }
 
 module.exports = {
+    getCategories: getCategories,
     createCategory: createCategory,
     updateCategory: updateCategory,
     deleteCategory: deleteCategory
