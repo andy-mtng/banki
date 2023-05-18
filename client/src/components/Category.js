@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import EditCategoriesForm from "./EditCategoriesForm.js";
 
 function Category(props) {
     const [categoryName, setCategoryName] = useState(props.categoryName);
     const [clientAssignedId, setClientAssignedId] = useState(props.clientAssignedId);
     const [editing, setEditing] = useState(false);
+    const pathToFlashCards = "/categories/" + categoryName;
 
     const handleDelete = () => {
         props.deleteCategory(clientAssignedId);
@@ -56,7 +58,7 @@ function Category(props) {
 
     return (
         <div>
-            <h1>{categoryName}</h1>
+            <Link to={pathToFlashCards}>{categoryName}</Link>
             {editing && <EditCategoriesForm 
                 currentCategoryName={categoryName} 
                 getUpdatedCategoryName={getUpdatedCategoryName}/>}

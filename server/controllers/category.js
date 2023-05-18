@@ -1,7 +1,6 @@
 const Category = require("../models/category.js");
 
 const getCategories = (req, res) => {
-    console.log("API hit");
     Category.find({})
         .then((categoriesArray) => { res.json({categoriesArray: categoriesArray}) })
         .catch(err => { res.status(500).json({message: "Error: Unable to retrieve categories from database. " + err}) })
