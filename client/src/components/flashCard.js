@@ -14,7 +14,8 @@ function FlashCard(props) {
     }
 
     const deleteFlashCard = async (delId) => {
-        fetch(`http://localhost:5000/flashcard?id=${delId}`, {
+        const category = props.category;
+        fetch(`http://localhost:5000/flashcard?id=${delId}&category=${category}`, {
             method: "DELETE"
         })
         .then((response) => response.json())

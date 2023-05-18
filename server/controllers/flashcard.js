@@ -10,7 +10,6 @@ const getFlashCards = (req, res) => {
 }
 
 const createFlashCard = (req, res) => {
-    console.log("CATEGORY", req.query.category);
     const category = req.query.category;
     const flashCardData = req.body;    
     const newFlashCard = new FlashCard({
@@ -34,8 +33,27 @@ const createFlashCard = (req, res) => {
 
 const deleteFlashCard = (req, res) => {
     const delId = req.query.id;
-    FlashCard.deleteOne({ clientAssignedId: delId })
-        .then(queryResult => { res.json({message : "Flashcard deleted from database."}) })
+    const category = req.query.category;
+    let deletedDocumentId;
+    FlashCard.findOne( {clientAssignedId: delId} )
+        .then((flashCard) => {
+            if (flashCard) {
+                deletedDocumentId = flashCard._id;
+                return FlashCard.deleteOne( { clientAssignedId: delId } );
+            } else {
+                throw new Error("Flashcard not found.");
+            }
+        })
+        .then(queryResult => { 
+            res.json({message : "Flashcard deleted from database."});
+            console.log(queryResult);
+            Category.updateOne(
+                { categoryName: category },
+                { $pull: { flashCards: deletedDocumentId } }
+            )
+            .then((deletionResult) => { console.log("Flashcard deleted from category.") })
+            .catch((error) => { console.log("Flashcard not deleted from category", error) } );
+        })
         .catch(err => { res.status(500).json({message: "Error: Flashcard not deleted from database. " + err}) });
 }
 

@@ -124,7 +124,8 @@ function App() {
         flashCards={flashCards} 
         flashCardsState={flashCardsState} 
         deleteFlashCard={deleteFlashCard} 
-        getFlashCardToEdit={getFlashCardToEdit}/>
+        getFlashCardToEdit={getFlashCardToEdit}
+        category={category}/>
     </div>
   );
 }
