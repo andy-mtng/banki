@@ -118,6 +118,7 @@ function App() {
         addFlashCard={addFlashCard} 
         editFlashCard={editFlashCard}
         handleXButtonClick={handleXButtonClick}
+        category={category}
         flashCardToEdit={isEditing ? flashCardToEdit : {}}/> }
       <FlashCardContainer 
         flashCards={flashCards} 

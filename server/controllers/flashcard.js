@@ -1,6 +1,7 @@
 const { get } = require("mongoose");
 // const flashcard = require("../models/flashcard.js");
 const FlashCard = require("../models/flashcard.js");
+const Category = require("../models/category.js");
 
 const getFlashCards = (req, res) => {
     FlashCard.find({})
@@ -9,6 +10,8 @@ const getFlashCards = (req, res) => {
 }
 
 const createFlashCard = (req, res) => {
+    console.log("CATEGORY", req.query.category);
+    const category = req.query.category;
     const flashCardData = req.body;    
     const newFlashCard = new FlashCard({
         front: flashCardData.front, 
@@ -16,7 +19,16 @@ const createFlashCard = (req, res) => {
         clientAssignedId: flashCardData.id
     });
     newFlashCard.save()
-        .then(savedFlashCard => { res.json({message : "Flashcard saved to database."}) })
+        .then(savedFlashCard => { 
+            console.log(savedFlashCard);
+            res.json({message : "Flashcard saved to database."});
+            Category.updateOne(
+                {categoryName: category}, 
+                { $push: { flashCards: savedFlashCard._id } }
+            )
+            .then(result => console.log("Flashcard saved to category."))
+            .catch(error => console.log("Error: Flashcard not saved to category"))
+        })
         .catch(err => { res.status(500).json({message: "Error: Flashcard not saved to database. " + err}) });
 }
 

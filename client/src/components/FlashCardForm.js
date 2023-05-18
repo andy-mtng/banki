@@ -54,7 +54,8 @@ function FlashCardForm(props) {
 
     
     const createFlashCard = async (flashCardObj) => {
-        fetch("http://localhost:5000/flashcard", {
+        const category = props.category;
+        fetch(`http://localhost:5000/flashcard?category=${category}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
