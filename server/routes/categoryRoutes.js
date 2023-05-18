@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const categoryController = require("../controllers/category.js");
 
+router.get("/:category", categoryController.getFlashCardsFromCategory);
+
 router.get("/", categoryController.getCategories);
 
 router.post("/", categoryController.createCategory);

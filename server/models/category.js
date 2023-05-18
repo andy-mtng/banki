@@ -8,7 +8,7 @@ const CategoryModelSchema = new Schema({
     flashCards: [{
         type: mongoose.Schema.Types.ObjectId,
         // Name of the referenced collection
-        ref: "flashcards"
+        ref: "FlashCard"
     }]
 });
 

@@ -68,7 +68,7 @@ function App() {
 
 
   const getFlashCards = async () => {
-    fetch("http://localhost:5000/flashcard", {
+    fetch(`http://localhost:5000/category/${category}`, {
       method: "GET"
     })
     .then(response => response.json())

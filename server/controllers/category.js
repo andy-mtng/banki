@@ -1,4 +1,23 @@
 const Category = require("../models/category.js");
+const FlashCard = require("../models/flashcard.js");
+
+const getFlashCardsFromCategory = (req, res) => {
+    console.log("Server hit");
+    const categoryName = req.params.category;
+    console.log(categoryName);
+    Category.findOne({ categoryName: categoryName })
+        .populate("flashCards")
+        .exec()
+        .then((category) => {
+            console.log("then hit");
+            console.log(category.flashCards);
+            res.json( {flashCards: category.flashCards} );
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({message: "Error: Unable to retrieve categories from database. " + err})
+        });
+}
 
 const getCategories = (req, res) => {
     Category.find({})
@@ -38,6 +57,7 @@ const deleteCategory = (req, res) => {
 }
 
 module.exports = {
+    getFlashCardsFromCategory: getFlashCardsFromCategory,
     getCategories: getCategories,
     createCategory: createCategory,
     updateCategory: updateCategory,
