@@ -15,6 +15,15 @@ const createCategory = (req, res) => {
         .catch(err => { res.status(500).json({message: "Error: Category not saved to database. " + err})})
 }
 
+const updateCategory = (req, res) => {
+    const updatedCategoryData = req.body;
+    console.log(updatedCategoryData);
+
+    Category.updateOne({ clientAssignedId: req.body.clientAssignedId }, updatedCategoryData)
+        .then((result) => { res.json({message: "Category updated in the database."}) })
+        .catch((err) => { res.status(500).json({message: "Error: Category not updated in database. " + err}) });
+}
+
 const deleteCategory = (req, res) => {
     const delId = req.query.id;
     Category.deleteOne( {clientAssignedId: delId} )
@@ -24,5 +33,6 @@ const deleteCategory = (req, res) => {
 
 module.exports = {
     createCategory: createCategory,
+    updateCategory: updateCategory,
     deleteCategory: deleteCategory
 }

@@ -29,12 +29,29 @@ function Category(props) {
     const getUpdatedCategoryName = (updatedCategoryName) => {
         setCategoryName(updatedCategoryName);
         setEditing(false);
-        props.editCategory({
+        const updatedCategory = {
             clientAssignedId: clientAssignedId,
             key: clientAssignedId,
             categoryName: updatedCategoryName,
             flashCards: props.flashCards
-        });
+        }
+        props.editCategory(updatedCategory);
+        editCategory(updatedCategory);
+    }
+
+    const editCategory = (updatedCategoryObj) => {
+        fetch("http://localhost:5000/category", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(updatedCategoryObj)
+        })
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch(error => {
+            console.log("There was a problem with the request:", error);
+        })
     }
 
     return (

@@ -6,14 +6,12 @@ function FlashCard(props) {
     const [isFlipped, setIsFlipped] = useState(false);
     const [id, setId] = useState(props.id);
 
-
     const handleDelete = (event) => {
         // Prevents card flipping if delete button is pressed
         event.stopPropagation();
         props.deleteFlashCard(id);
         deleteFlashCard(id);
     }
-
 
     const deleteFlashCard = async (delId) => {
         fetch(`http://localhost:5000/flashcard?id=${delId}`, {
@@ -26,13 +24,11 @@ function FlashCard(props) {
         });
     }
 
-
     const handleEdit = (event) => {
         // Prevents card flipping if edit button is pressed
         event.stopPropagation();
         props.getFlashCardToEdit(id);
     }
-
 
     const flipFlashCard = () => {
         if (isFlipped) {
@@ -44,12 +40,10 @@ function FlashCard(props) {
         }
     }
 
-
     useEffect(() => {
         setFront(props.front);
         setBack(props.back);
     }, [props.front, props.back])
-
 
     return (
         <div className="flash-card" onClick={flipFlashCard}>
