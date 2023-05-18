@@ -3,11 +3,11 @@ const { get } = require("mongoose");
 const FlashCard = require("../models/flashcard.js");
 const Category = require("../models/category.js");
 
-const getFlashCards = (req, res) => {
-    FlashCard.find({})
-        .then(flashCardsArray => { res.json({ flashCards: flashCardsArray }) })
-        .catch(err => { res.status(500).json({message: "Error: Unable to retrieve flashcards from database. " + err}) })
-}
+// const getFlashCards = (req, res) => {
+//     FlashCard.find({})
+//         .then(flashCardsArray => { res.json({ flashCards: flashCardsArray }) })
+//         .catch(err => { res.status(500).json({message: "Error: Unable to retrieve flashcards from database. " + err}) })
+// }
 
 const createFlashCard = (req, res) => {
     const category = req.query.category;
@@ -65,7 +65,6 @@ const updateFlashCard = (req, res) => {
 }
 
 module.exports = {
-    getFlashCards: getFlashCards,
     createFlashCard: createFlashCard,
     deleteFlashCard: deleteFlashCard,
     updateFlashCard: updateFlashCard
