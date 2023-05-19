@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import FlashCardContainer from "./components/FlashCardContainer";
 import Navbar from "./components/Navbar";
 import FlashCardForm from "./components/FlashCardForm";
@@ -111,6 +111,7 @@ function App() {
   return (
     <div>
       <Navbar />
+      <Link to="/categories">Back to Categories</Link>
       <h1>{category}</h1>
       <button onClick={handleAddCardButtonClick}>Add New Card +</button>
       { showForm && <FlashCardForm 
