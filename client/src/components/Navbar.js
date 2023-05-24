@@ -5,8 +5,8 @@ function Navbar() {
     return (
         <nav className="navbar">
             <Link to="/">Banki</Link>
-            {/* Change this to "Open App" if the user is already logged in */}
             <Link to="/login">Login</Link>
+            <Link to="/signup">Sign up</Link>
         </nav>
     );
 }

@@ -1,13 +1,13 @@
 import Navbar from "./components/Navbar.js";
 
-function Authentication() {
+function Login() {
 
     return (
         <div>
             <Navbar />
-            <h1>Login</h1>
+            <h1>Login Page</h1>
         </div>
     );
 }
 
-export default Authentication;
+export default Login;
