@@ -4,6 +4,7 @@ import FlashCardContainer from "./components/FlashCardContainer";
 import Navbar from "./components/Navbar";
 import FlashCardForm from "./components/FlashCardForm";
 import "./styles/general.css";
+import { useAuthContext } from "./hooks/useAuthContext";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
   const [flashCardToEdit, setFlashCardToEdit] = useState({});
   const [functionCallFlag, setFunctionCallFlag] = useState(0);
   const { category } = useParams(); 
+  const { user } = useAuthContext();
 
 
   const handleAddCardButtonClick = () => {
@@ -69,7 +71,10 @@ function App() {
 
   const getFlashCards = async () => {
     fetch(`http://localhost:5000/category/${category}`, {
-      method: "GET"
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${user.token}`
+      }
     })
     .then(response => response.json())
     .then((flashCardData) => {

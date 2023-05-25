@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar.js";
 import Category from "./components/Category.js";
 import AddCategoriesForm from "./components/AddCategoriesForm.js";
+import { useAuthContext } from "./hooks/useAuthContext.js";
 
 function CategoriesContainer() {
     const [categories, setCategories] = useState([]);
+    const { user } = useAuthContext();
 
     const addCategory = (newCategory) => {
         setCategories([...categories, newCategory]);
@@ -31,7 +33,10 @@ function CategoriesContainer() {
 
     const getCategories = async () => {
         fetch("http://localhost:5000/category", {
-            method: "GET"
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${user.token}`
+            }
         })
         .then((response) => { return response.json() })
         .then((categoryData) => { 

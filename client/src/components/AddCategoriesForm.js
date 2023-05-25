@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import { useAuthContext } from "../hooks/useAuthContext";
 
 function CategoriesForm(props) {
     const [category, setCategory] = useState("");
+    const { user } = useAuthContext();
 
     const handleInputChangeCategory = (event) => {
         setCategory(event.target.value);
@@ -26,7 +28,8 @@ function CategoriesForm(props) {
         fetch("http://localhost:5000/category", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${user.token}`
             },
             body: JSON.stringify(categoryObj)
         })

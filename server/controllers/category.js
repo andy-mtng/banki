@@ -2,14 +2,11 @@ const Category = require("../models/category.js");
 const FlashCard = require("../models/flashcard.js");
 
 const getFlashCardsFromCategory = (req, res) => {
-    console.log("Server hit");
     const categoryName = req.params.category;
-    console.log(categoryName);
     Category.findOne({ categoryName: categoryName })
         .populate("flashCards")
         .exec()
         .then((category) => {
-            console.log("then hit");
             console.log(category.flashCards);
             res.json( {flashCards: category.flashCards} );
         })
@@ -20,18 +17,20 @@ const getFlashCardsFromCategory = (req, res) => {
 }
 
 const getCategories = (req, res) => {
-    Category.find({})
+    const userId = req.user._id;
+    Category.find({ user_id: userId })
         .then((categoriesArray) => { res.json({categoriesArray: categoriesArray}) })
         .catch(err => { res.status(500).json({message: "Error: Unable to retrieve categories from database. " + err}) })
 }
 
 const createCategory = (req, res) => {
     const categoryData = req.body;
-    console.log(categoryData);
+    const userId = req.user._id;
 
     const newCategory = new Category({
         categoryName: categoryData.categoryName,
         clientAssignedId: categoryData.clientAssignedId,
+        user_id: userId,
         flashCards: categoryData.flashCards
     });
 
