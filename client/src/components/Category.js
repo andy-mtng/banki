@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import EditCategoriesForm from "./EditCategoriesForm.js";
+import { useAuthContext } from "../hooks/useAuthContext.js";
 
 function Category(props) {
     const [categoryName, setCategoryName] = useState(props.categoryName);
     const [clientAssignedId, setClientAssignedId] = useState(props.clientAssignedId);
     const [editing, setEditing] = useState(false);
     const pathToFlashCards = "/categories/" + categoryName;
+    const { user } = useAuthContext();
 
     const handleDelete = () => {
         props.deleteCategory(clientAssignedId);
@@ -15,7 +17,10 @@ function Category(props) {
 
     const deleteCategory = async (delId) => {
         fetch(`http://localhost:5000/category?id=${delId}`, {
-            method: "DELETE"
+            method: "DELETE", 
+            headers: {
+                "Authorization": `Bearer ${user.token}`
+            }
         })
         .then((response) => response.json() )
         .then((data) => console.log(data) )
@@ -45,7 +50,8 @@ function Category(props) {
         fetch("http://localhost:5000/category", {
             method: "PUT",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${user.token}`
             },
             body: JSON.stringify(updatedCategoryObj)
         })

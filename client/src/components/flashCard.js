@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 function FlashCard(props) {
     const [front, setFront] = useState(props.front);
     const [back, setBack] = useState(props.back);
     const [isFlipped, setIsFlipped] = useState(false);
     const [id, setId] = useState(props.id);
+    const { user } = useAuthContext();
 
     const handleDelete = (event) => {
         // Prevents card flipping if delete button is pressed
@@ -16,7 +18,10 @@ function FlashCard(props) {
     const deleteFlashCard = async (delId) => {
         const category = props.category;
         fetch(`http://localhost:5000/flashcard?id=${delId}&category=${category}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${user.token}`
+            }
         })
         .then((response) => response.json())
         .then((json) => console.log(json))

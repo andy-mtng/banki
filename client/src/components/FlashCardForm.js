@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import "../styles/forms.css"
+import { useAuthContext } from "../hooks/useAuthContext";
 
 function FlashCardForm(props) {
     const [cardFront, setCardFront] = useState(props.isEditing ? props.flashCardToEdit.front : '');
     const [cardBack, setCardBack] = useState(props.isEditing ? props.flashCardToEdit.back: '');
-
+    const { user } = useAuthContext();
 
     const handleInputChangeFront = (event) => {
         setCardFront(event.target.value);
@@ -58,7 +59,8 @@ function FlashCardForm(props) {
         fetch(`http://localhost:5000/flashcard?category=${category}`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${user.token}`
             },
             body: JSON.stringify(flashCardObj)
         })
@@ -74,7 +76,8 @@ function FlashCardForm(props) {
         fetch("http://localhost:5000/flashcard", {
             method: "PUT",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${user.token}`
             },
             body: JSON.stringify(flashCardObj)
         })

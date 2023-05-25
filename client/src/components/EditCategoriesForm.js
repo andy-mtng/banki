@@ -1,7 +1,9 @@
 import { useState } from "react";
-
+import { useAuthContext } from "../hooks/useAuthContext";
+ 
 function EditCategoriesForm(props) {
     const [editedCategory, setEditedCategory] = useState(props.currentCategoryName);
+    const { user } = useAuthContext();
 
     const handleInputChangeEditedCategory = (event) => {
         setEditedCategory(event.target.value);
@@ -9,6 +11,11 @@ function EditCategoriesForm(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        if (!user) {
+            return;
+        }
+
         console.log("editedCategory", editedCategory);
         props.getUpdatedCategoryName(editedCategory);
         setEditedCategory("");
