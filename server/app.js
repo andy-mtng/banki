@@ -1,11 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-
 require("dotenv").config()
+
 const flashCardRouter = require("./routes/flashcardRoutes.js");
 const categoryRouter = require("./routes/categoryRoutes.js");
-// const homeRouter = require("./routes/homeRoutes.js");
+const userRouter = require("./routes/user.js");
 
 const app = express();
 const port = 5000;
@@ -17,11 +17,7 @@ app.use(express.json());
 
 app.use("/flashcard", flashCardRouter);
 app.use("/category", categoryRouter);
-// app.use("/", homeRouter);
-
-app.get("/", (req, res) => {
-    res.send("Home");
-});
+app.use("/user", userRouter);
 
 // Connect to MongoDB
 main().catch((err) => console.log(err));
