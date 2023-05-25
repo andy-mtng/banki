@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import App from './App';
 import RouteSwitch from './RouteSwitch';
+import { AuthContextProvider } from './context/AuthContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouteSwitch />
+    <AuthContextProvider>
+      <RouteSwitch />
+    </AuthContextProvider>
   </React.StrictMode>
 );
 
