@@ -13,10 +13,17 @@ function Navbar() {
 
     return (
         <nav className="navbar">
+            {user ? (
+            <Link to="/categories">Banki</Link>
+            ) : (
             <Link to="/">Banki</Link>
-            <button onClick={handleClick}>Logout</button>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign up</Link>
+            )}            
+            {user && <button onClick={handleClick}>Logout</button>}
+            {!user &&
+            <div>
+                <Link to="/login">Login</Link>
+                <Link to="/signup">Sign up</Link>
+            </div>}
         </nav>
     );
 }

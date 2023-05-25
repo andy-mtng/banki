@@ -1,10 +1,17 @@
 import { useState } from 'react'
 import { useAuthContext } from './useAuthContext'
+import { useNavigate } from 'react-router-dom';
+
 
 export const useSignup = () => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(null)
-  const { dispatch } = useAuthContext()
+  const { dispatch } = useAuthContext();
+  const navigate = useNavigate();
+
+  const handleRedirect = () => {
+    navigate("/categories");
+  };
 
   const signup = async (email, password) => {
     setIsLoading(true)
@@ -30,6 +37,7 @@ export const useSignup = () => {
 
       // update loading state
       setIsLoading(false)
+      handleRedirect();
     }
   }
 
