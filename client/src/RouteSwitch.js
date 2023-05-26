@@ -16,8 +16,8 @@ const RouteSwitch = () => {
                 <Route path="/" element={!user ? <LandingPage /> : <Navigate to="/categories" /> }/>
                 <Route path="/categories" element={user ? <CategoriesContainer /> : <Navigate to="/login" />} />
                 <Route path="/categories/:category" element={user ? <App /> : <Navigate to="/login" />} />
-                <Route path="/login" element={user ? <App /> : <Login />} />
-                <Route path="/signup" element={user ? <App /> : <Signup />} />
+                <Route path="/login" element={user ? <CategoriesContainer /> : <Login />} />
+                <Route path="/signup" element={user ? <CategoriesContainer /> : <Signup />} />
             </Routes>
         </BrowserRouter>
     )

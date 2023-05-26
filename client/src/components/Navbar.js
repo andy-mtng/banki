@@ -16,7 +16,7 @@ function Navbar() {
         <nav className="bg-blue-900 flex justify-between px-16 py-6 text-white">
             <div>
                 <Link to={user ? "/categories" : "/"} className="text-xl flex gap-3 font-bold">
-                    <div className="bg-blue-300 w-7 h-7 rounded-md"></div>
+                    <div className="bg-blue-200 w-7 h-7 rounded-md"></div>
                     Banki
                 </Link>
             </div>          

@@ -7,6 +7,7 @@ import { useAuthContext } from "./hooks/useAuthContext.js";
 function CategoriesContainer() {
     const [categories, setCategories] = useState([]);
     const { user } = useAuthContext();
+    console.log("Entered CategoriesContainer");
 
     const addCategory = (newCategory) => {
         setCategories([...categories, newCategory]);
@@ -40,7 +41,6 @@ function CategoriesContainer() {
         })
         .then((response) => { return response.json() })
         .then((categoryData) => { 
-            console.log(categoryData);
             const processedCategories = [];
             
             categoryData.categoriesArray.map((category) => {
@@ -62,15 +62,10 @@ function CategoriesContainer() {
         getCategories();
     }, []);
 
-    useEffect(() => {
-        console.log(categories);
-    }, [categories]);
-
     return (
         <div>
             <Navbar />
-            <h1>Categories Page</h1>
-            <AddCategoriesForm addCategory={addCategory}/>
+            <AddCategoriesForm className="" addCategory={addCategory}/>
             {categories.map((category) => {
                 return <Category 
                             clientAssignedId={category.clientAssignedId}
