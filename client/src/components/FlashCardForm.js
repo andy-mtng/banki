@@ -90,19 +90,23 @@ function FlashCardForm(props) {
 
 
     return (
-        <div className="form-container">
-            <button onClick={handleXButtonClick}>X</button>
-            <h1>{props.isEditing ? "Edit Flashcard" : "Add New Flashcard:" }</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="cardFront">Front: </label>
-                    <input id="cardFront" type="text" value={cardFront} onChange={handleInputChangeFront} />
+        <div className="bg-white w-96 h-70 px-6 py-5 rounded-lg relative shadow-md">
+            <button className="absolute right-4 top-4" onClick={handleXButtonClick}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-500">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <h1 className="text-lg font-semibold mb-5">{props.isEditing ? "Edit Flashcard" : "Add New Flashcard" }</h1>
+            <form onSubmit={handleSubmit} className="flex flex-col">
+                <div className="flex flex-col mb-3">
+                    <label htmlFor="cardFront">Front</label>
+                    <input className="border border-gray-400 h-9" id="cardFront" type="text" value={cardFront} onChange={handleInputChangeFront} />
                 </div>
-                <div>
-                    <label htmlFor="cardBack">Back: </label>
-                    <input id="cardBack" type="text" value={cardBack} onChange={handleInputChangeBack}/>
+                <div className="flex flex-col mb-5">
+                    <label htmlFor="cardBack" className="border border-gray-300">Back</label>
+                    <input className="border border-gray-400 h-9" id="cardBack" type="text" value={cardBack} onChange={handleInputChangeBack}/>
                 </div>
-                <button type="submit">{props.isEditing ? "Save" : "Submit"}</button>
+                <button className="ml-auto bg-gray-200 px-3 py-2 rounded-lg font-semibold text-sm" type="submit">{props.isEditing ? "SAVE" : "SUBMIT"}</button>
             </form>
         </div>
     );

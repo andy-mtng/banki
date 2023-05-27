@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import EditCategoriesForm from "./EditCategoriesForm.js";
 import { useAuthContext } from "../hooks/useAuthContext.js";
+import EditIcon from "../assets/edit-icon.svg";
+import DeleteIcon from "../assets/delete-icon.svg";
 
 function Category(props) {
     const [categoryName, setCategoryName] = useState(props.categoryName);
@@ -63,17 +65,24 @@ function Category(props) {
     }
 
     return (
-        <div className="flex justify-between">
+        <div className="flex justify-between relative hover:bg-gray-200">
             <Link className="text-lg font-medium" to={pathToFlashCards}>{categoryName}</Link>
-            <div>
-                {editing && <EditCategoriesForm
-                    currentCategoryName={categoryName}
-                    getUpdatedCategoryName={getUpdatedCategoryName}/>}
-            </div>
-            <div className="flex gap-3">
-                <button onClick={toggleEditingOn}>Edit</button>
-                <button onClick={handleDelete}>Delete</button>
-            </div>
+            {editing ? (
+                <div>
+                    {editing && <EditCategoriesForm
+                        currentCategoryName={categoryName}
+                        getUpdatedCategoryName={getUpdatedCategoryName}/>}
+                </div>
+            ) : (
+                <div className="flex gap-2">
+                    <button onClick={toggleEditingOn}>
+                        <img src={EditIcon} className="w-6 h-6" />
+                    </button>
+                    <button onClick={handleDelete}>
+                        <img src={DeleteIcon} className="w-6 h-6" />
+                    </button>
+                </div>
+            )}
         </div>
     )
 }

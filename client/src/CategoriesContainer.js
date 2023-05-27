@@ -66,9 +66,9 @@ function CategoriesContainer() {
         <div className="bg-gray-100 h-screen w-screen">
             <Navbar />
             <div className="flex justify-center mt-9">
-                <div className="flex flex-col bg-red-100 items-center w-96">
+                <div className="flex flex-col items-center w-96">
                     <AddCategoriesForm addCategory={addCategory}/>
-                    <div className="flex flex-col  bg-green-200 w-full gap-4">
+                    <div className="flex flex-col w-full gap-2 mt-4">
                         {categories.map((category) => {
                             return <Category
                                         clientAssignedId={category.clientAssignedId}

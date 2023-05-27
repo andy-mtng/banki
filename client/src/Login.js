@@ -24,7 +24,7 @@ const Login = () => {
             <div className="mb-3">
               <label className="text-sm font-medium mb-4">Email Address</label>
               <input
-                className="text=sm border border-gray-300 w-full rounded-sm h-8"
+                className="text-sm border border-gray-300 w-full rounded-sm h-8"
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
@@ -33,7 +33,7 @@ const Login = () => {
             <div className="mb-6">
             <label className="text-sm font-medium">Password</label>
               <input
-                className="text=sm border border-gray-300 w-full rounded-sm h-8"
+                className="text-sm border border-gray-300 w-full rounded-sm h-8"
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}

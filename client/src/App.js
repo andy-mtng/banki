@@ -114,18 +114,21 @@ function App() {
 
 
   return (
-    <div>
+    <div className="bg-gray-100 w-screen h-screen relative">
       <Navbar />
-      <Link to="/categories">Back to Categories</Link>
-      <h1>{category}</h1>
-      <button onClick={handleAddCardButtonClick}>Add New Card +</button>
-      { showForm && <FlashCardForm 
-        isEditing={isEditing} 
-        addFlashCard={addFlashCard} 
-        editFlashCard={editFlashCard}
-        handleXButtonClick={handleXButtonClick}
-        category={category}
-        flashCardToEdit={isEditing ? flashCardToEdit : {}}/> }
+      <div className="flex flex-col items-center">
+        <h1 className="mt-6 text-2xl font-semibold mb-3">{category}</h1>
+        <button className="bg-blue-900 px-4 py-2 rounded-lg text-white font-base" onClick={handleAddCardButtonClick}>Add New Card</button>
+      </div>
+      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">  
+          { showForm && <FlashCardForm
+            isEditing={isEditing}
+            addFlashCard={addFlashCard}
+            editFlashCard={editFlashCard}
+            handleXButtonClick={handleXButtonClick}
+            category={category}
+            flashCardToEdit={isEditing ? flashCardToEdit : {}}/> }
+      </div>
       <FlashCardContainer 
         flashCards={flashCards} 
         flashCardsState={flashCardsState} 

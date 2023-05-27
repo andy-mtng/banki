@@ -53,7 +53,7 @@ function FlashCard(props) {
 
     return (
         <div className="flash-card" onClick={flipFlashCard}>
-            <h1>{isFlipped ? `Back: ${back}` : `Front: ${front}`}</h1>
+            <h1>{isFlipped ? back : front}</h1>
             <button onClick={handleEdit}>Edit</button>
             <button onClick={handleDelete}>Delete</button>
         </div>

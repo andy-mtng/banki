@@ -22,10 +22,10 @@ function EditCategoriesForm(props) {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input type="text" value={editedCategory} onChange={handleInputChangeEditedCategory} />
-                <button type="submit">Save</button>
+        <div className="absolute top-0 left-0 text-lg font-medium w-full h-full">
+            <form onSubmit={handleSubmit} className="flex">
+                <input className="flex-grow" type="text" value={editedCategory} onChange={handleInputChangeEditedCategory} />
+                <button type="submit" className="px-2 text-base text-center bg-gray-300">Save</button>
             </form>
         </div>
     );
