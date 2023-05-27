@@ -41,11 +41,10 @@ function CategoriesForm(props) {
     }
 
     return (
-        <div>
-            <h1>Add Category</h1>
-            <form onSubmit={handleSubmit}>
-                <input type="text" value={category} onChange={handleInputChangeCategory}/>
-                <button type="submit">+</button>
+        <div className="w-full">
+            <form onSubmit={handleSubmit} className="flex">
+                <input className="flex-grow border border-gray-300 h-9 w-full" type="text" value={category} onChange={handleInputChangeCategory}/>
+                <button className="bg-gray-300 w-10 h-9 font-bold ml-1" type="submit">+</button>
             </form>
         </div>
     )

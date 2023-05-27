@@ -63,13 +63,17 @@ function Category(props) {
     }
 
     return (
-        <div>
-            <Link to={pathToFlashCards}>{categoryName}</Link>
-            {editing && <EditCategoriesForm 
-                currentCategoryName={categoryName} 
-                getUpdatedCategoryName={getUpdatedCategoryName}/>}
-            <button onClick={toggleEditingOn}>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
+        <div className="flex justify-between">
+            <Link className="text-lg font-medium" to={pathToFlashCards}>{categoryName}</Link>
+            <div>
+                {editing && <EditCategoriesForm
+                    currentCategoryName={categoryName}
+                    getUpdatedCategoryName={getUpdatedCategoryName}/>}
+            </div>
+            <div className="flex gap-3">
+                <button onClick={toggleEditingOn}>Edit</button>
+                <button onClick={handleDelete}>Delete</button>
+            </div>
         </div>
     )
 }
