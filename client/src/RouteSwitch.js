@@ -6,6 +6,7 @@ import LandingPage from "./LandingPage";
 import Login from "./Login";
 import Signup from "./Signup";
 import { useAuthContext } from "./hooks/useAuthContext";
+import NotFound from "./NotFound";
 
 const RouteSwitch = () => {
     const { user } = useAuthContext();
@@ -18,6 +19,7 @@ const RouteSwitch = () => {
                 <Route path="/categories/:category" element={user ? <App /> : <Navigate to="/login" />} />
                 <Route path="/login" element={user ? <CategoriesContainer /> : <Login />} />
                 <Route path="/signup" element={user ? <CategoriesContainer /> : <Signup />} />
+                <Route path="*" element={<NotFound />}/>
             </Routes>
         </BrowserRouter>
     )

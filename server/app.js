@@ -19,6 +19,10 @@ app.use("/flashcard", flashCardRouter);
 app.use("/category", categoryRouter);
 app.use("/user", userRouter);
 
+app.get('*', (req, res) => {
+    res.status(404).json({ error: '404 page not found.' });
+});
+
 // Connect to MongoDB
 main().catch((err) => console.log(err));
 async function main() {
