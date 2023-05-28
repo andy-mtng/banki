@@ -7,7 +7,6 @@ import { useAuthContext } from "./hooks/useAuthContext.js";
 function CategoriesContainer() {
     const [categories, setCategories] = useState([]);
     const { user } = useAuthContext();
-    console.log("Entered CategoriesContainer");
 
     const addCategory = (newCategory) => {
         setCategories([...categories, newCategory]);
