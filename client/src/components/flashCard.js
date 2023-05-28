@@ -52,10 +52,14 @@ function FlashCard(props) {
     }, [props.front, props.back])
 
     return (
-        <div className="flash-card" onClick={flipFlashCard}>
-            <h1>{isFlipped ? back : front}</h1>
-            <button onClick={handleEdit}>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
+        <div className="rounded-lg w-full h-60 p-4 bg-blue-100 shadow-md flex flex-col justify-between" onClick={flipFlashCard}>
+            <div className="flex justify-center items-center">
+                <h1 className="break-all mt-8">{isFlipped ? back : front}</h1>
+            </div>
+            <div className="flex gap-3 ml-auto">
+                <button onClick={handleEdit}>Edit</button>
+                <button onClick={handleDelete}>Delete</button>
+            </div>
         </div>
     );
 }

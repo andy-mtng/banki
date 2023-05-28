@@ -11,7 +11,7 @@ function FlashCardContainer(props) {
     }, [props.flashCardsState]);
 
     return (
-        <div className="flash-card-container">
+        <div className="px-16 mt-9 grid grid-cols-3 gap-6 bg-yellow-200 justify-items-center">
             {flashCards.map((flashCard) => {
                 return <FlashCard 
                             id={flashCard.id} 
