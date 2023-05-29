@@ -54,8 +54,6 @@ const updateCategory = (req, res) => {
     }
 
     const updatedCategoryData = req.body;
-    console.log(updatedCategoryData);
-
     Category.updateOne({ clientAssignedId: req.body.clientAssignedId }, updatedCategoryData)
         .then((result) => { res.json({message: "Category updated in the database."}) })
         .catch((err) => { res.status(500).json({message: "Error: Category not updated in database. " + err}) });

@@ -113,7 +113,7 @@ function App() {
 
 
   return (
-    <div className="w-full relative bg-gray-100 min-h-screen">
+    <div className="w-full relative">
       <Navbar />
       <div className="flex flex-col items-center">
         <h1 className="mt-6 text-2xl font-semibold mb-3">{category}</h1>
