@@ -11,7 +11,7 @@ function LandingPage() {
     const navigate = useNavigate();
 
     return (
-        <div>
+        <div className="bg-gray-100">
             <Navbar />
             <div className="mt-24 ml-16">
                 <h1 className="text-5xl font-bold"> Supercharge Your <span className="underline decoration-blue-400">Memory</span></h1>

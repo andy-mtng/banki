@@ -61,7 +61,7 @@ function CategoriesContainer() {
     }, []);
 
     return (
-        <div className="bg-gray-100 h-screen w-screen">
+        <div className="bg-gray-100 w-screen min-h-screen">
             <Navbar />
             <div className="flex justify-center mt-9">
                 <div className="flex flex-col items-center w-96">
