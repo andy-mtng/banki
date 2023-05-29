@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useAuthContext } from '../hooks/useAuthContext';
-import "../styles/flashcardAnimation.css";
 
 function FlashCard(props) {
     const [front, setFront] = useState(props.front);

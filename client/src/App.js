@@ -3,7 +3,6 @@ import { useParams, Link } from "react-router-dom";
 import FlashCardContainer from "./components/FlashCardContainer";
 import Navbar from "./components/Navbar";
 import FlashCardForm from "./components/FlashCardForm";
-import "./styles/general.css";
 import { useAuthContext } from "./hooks/useAuthContext";
 
 

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import "../styles/forms.css"
 import { useAuthContext } from "../hooks/useAuthContext";
 
 function FlashCardForm(props) {
@@ -103,7 +102,7 @@ function FlashCardForm(props) {
                     <input className="border border-gray-400 h-9" id="cardFront" type="text" value={cardFront} onChange={handleInputChangeFront} />
                 </div>
                 <div className="flex flex-col mb-5">
-                    <label htmlFor="cardBack" className="border border-gray-300">Back</label>
+                    <label htmlFor="cardBack">Back</label>
                     <input className="border border-gray-400 h-9" id="cardBack" type="text" value={cardBack} onChange={handleInputChangeBack}/>
                 </div>
                 <button className="ml-auto bg-gray-200 px-3 py-2 rounded-lg font-semibold text-sm" type="submit">{props.isEditing ? "SAVE" : "SUBMIT"}</button>

@@ -1,4 +1,3 @@
-import "../styles/flashcards.css";
 import { useEffect, useState } from "react";
 import FlashCard from "./FlashCard";
 

@@ -66,7 +66,7 @@ function Category(props) {
 
     return (
         <div className="flex justify-between relative hover:bg-gray-200">
-            <Link className="text-lg font-medium" to={pathToFlashCards}>{categoryName}</Link>
+            <Link className="text-lg font-base" to={pathToFlashCards}>{categoryName}</Link>
             {editing ? (
                 <div>
                     {editing && <EditCategoriesForm
