@@ -1,5 +1,6 @@
 const Category = require("../models/category.js");
 const FlashCard = require("../models/flashcard.js");
+const { validationResult } = require("express-validator");
 
 const getFlashCardsFromCategory = (req, res) => {
     const categoryName = req.params.category;
@@ -7,11 +8,9 @@ const getFlashCardsFromCategory = (req, res) => {
         .populate("flashCards")
         .exec()
         .then((category) => {
-            console.log(category.flashCards);
             res.json( {flashCards: category.flashCards} );
         })
         .catch((err) => {
-            console.log(err);
             res.status(500).json({message: "Error: Unable to retrieve categories from database. " + err})
         });
 }
@@ -24,6 +23,13 @@ const getCategories = (req, res) => {
 }
 
 const createCategory = (req, res) => {
+    // Server-side validation
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+ 
     const categoryData = req.body;
     const userId = req.user._id;
 
@@ -40,6 +46,13 @@ const createCategory = (req, res) => {
 }
 
 const updateCategory = (req, res) => {
+    // Server-side validation
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
     const updatedCategoryData = req.body;
     console.log(updatedCategoryData);
 

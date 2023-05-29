@@ -13,7 +13,6 @@ function CategoriesContainer() {
     }
 
     const deleteCategory = (delId) => {
-        console.log(delId);
         const updatedCategories = categories.filter((category) => {
             return category.clientAssignedId !== delId;
         })
@@ -67,7 +66,7 @@ function CategoriesContainer() {
             <div className="flex justify-center mt-9">
                 <div className="flex flex-col items-center w-96">
                     <AddCategoriesForm addCategory={addCategory}/>
-                    <div className="flex flex-col w-full gap-2 mt-4">
+                    <div className="flex flex-col w-full gap-5 mt-4">
                         {categories.map((category) => {
                             return <Category
                                         clientAssignedId={category.clientAssignedId}

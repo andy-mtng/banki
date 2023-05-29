@@ -1,13 +1,6 @@
 const { get } = require("mongoose");
-// const flashcard = require("../models/flashcard.js");
 const FlashCard = require("../models/flashcard.js");
 const Category = require("../models/category.js");
-
-// const getFlashCards = (req, res) => {
-//     FlashCard.find({})
-//         .then(flashCardsArray => { res.json({ flashCards: flashCardsArray }) })
-//         .catch(err => { res.status(500).json({message: "Error: Unable to retrieve flashcards from database. " + err}) })
-// }
 
 const createFlashCard = (req, res) => {
     const category = req.query.category;
@@ -17,9 +10,9 @@ const createFlashCard = (req, res) => {
         back: flashCardData.back,
         clientAssignedId: flashCardData.id
     });
+    
     newFlashCard.save()
         .then(savedFlashCard => { 
-            console.log(savedFlashCard);
             res.json({message : "Flashcard saved to database."});
             Category.updateOne(
                 {categoryName: category}, 

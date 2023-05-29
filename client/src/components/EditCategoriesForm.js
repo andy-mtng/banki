@@ -4,19 +4,37 @@ import { useAuthContext } from "../hooks/useAuthContext";
 function EditCategoriesForm(props) {
     const [editedCategory, setEditedCategory] = useState(props.currentCategoryName);
     const { user } = useAuthContext();
+    const [errors, setErrors] = useState([]);
 
     const handleInputChangeEditedCategory = (event) => {
         setEditedCategory(event.target.value);
     }
 
+    const validate = () => {
+        const validationErrors = []
+
+        if (editedCategory === "") {
+            validationErrors.push("Category cannot be empty.")
+        }
+
+        if (editedCategory.length > 32) {
+            validationErrors.push("Category cannot be longer than 32 characters.")
+        }
+        return validationErrors;
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
+        const validationErrors = validate();
+
+        if (validationErrors.length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
 
         if (!user) {
             return;
         }
-
-        console.log("editedCategory", editedCategory);
         props.getUpdatedCategoryName(editedCategory);
         setEditedCategory("");
     }
@@ -27,6 +45,9 @@ function EditCategoriesForm(props) {
                 <input className="flex-grow bg-gray-100" type="text" value={editedCategory} onChange={handleInputChangeEditedCategory} />
                 <button type="submit" className="px-2 text-base text-center bg-gray-300">Save</button>
             </form>
+            {errors.map((error, index) => {
+                return <h1 className="text-xs text-red-500 mt-0" key={index}>{error}</h1>
+            })}
         </div>
     );
 }
