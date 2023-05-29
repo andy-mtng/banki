@@ -73,11 +73,15 @@ function FlashCard(props) {
         //     </div>
         // </div>   
         <div class="group h-60 w-full [perspective:1000px]">
+            <div className="flex justify-end gap-3 mb-3">
+                <button onClick={handleEdit}>Edit</button>
+                <button onClick={handleDelete}>Delete</button>
+            </div>
             <div class="bg-blue-100 relative h-full w-full rounded-xl shadow-md transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-                <div class="absolute inset-0 opacity-100 group-hover:opacity-0">
+                <div class="absolute inset-0 opacity-100 group-hover:opacity-0 transition-opacity duration-500 p-4">
                     <h1 className="text-center mt-8">{front}</h1>
                 </div>
-                <div class="absolute inset-0 h-full w-full rounded-xl px-12 text-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                <div class="absolute inset-0 h-full w-full rounded-xl px-12 text-center [transform:rotateY(180deg)] [backface-visibility:hidden] p-4">
                     <div class="flex min-h-full flex-col items-center">
                         <h1 class="mt-8">{back}</h1>
                     </div>
