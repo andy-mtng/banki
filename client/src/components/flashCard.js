@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuthContext } from '../hooks/useAuthContext';
+import "../styles/flashcardAnimation.css";
 
 function FlashCard(props) {
     const [front, setFront] = useState(props.front);
@@ -52,15 +53,25 @@ function FlashCard(props) {
     }, [props.front, props.back])
 
     return (
-        <div className="rounded-lg w-full h-60 p-4 bg-blue-100 shadow-md flex flex-col justify-between" onClick={flipFlashCard}>
-            <div className="flex justify-center items-center">
-                <h1 className="break-all mt-8">{isFlipped ? back : front}</h1>
+        // <div className="rounded-lg w-full h-60 p-4 bg-blue-100 shadow-md flex flex-col justify-between" onClick={flipFlashCard}>
+        //     <div className="flex justify-center items-center">
+        //         <h1 className="break-all mt-8">{isFlipped ? back : front}</h1>
+        //     </div>
+        //     <div className="flex gap-3 ml-auto">
+        //         <button onClick={handleEdit}>Edit</button>
+        //         <button onClick={handleDelete}>Delete</button>
+        //     </div>
+        // </div>
+        <div className="group w-full h-60 p-4 [perspective:1000px]">
+            <div className="bg-blue-100 h-full w-full rounded-lg shadow-md transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateX(180deg)]">
+                <div className="flex justify-center">
+                    <h1 className="mt-8">{front}</h1>
+                </div>
+                <div className="relative [transform:rotateX(180deg)] [backface-visibility:hidden]">
+                    <h1 className="text-base font-medium absolute top-10">{back}</h1>
+                </div>
             </div>
-            <div className="flex gap-3 ml-auto">
-                <button onClick={handleEdit}>Edit</button>
-                <button onClick={handleDelete}>Delete</button>
-            </div>
-        </div>
+        </div>           
     );
 }
 
