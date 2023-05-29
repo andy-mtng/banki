@@ -62,16 +62,28 @@ function FlashCard(props) {
         //         <button onClick={handleDelete}>Delete</button>
         //     </div>
         // </div>
-        <div className="group w-full h-60 p-4 [perspective:1000px]">
-            <div className="bg-blue-100 h-full w-full rounded-lg shadow-md transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateX(180deg)]">
-                <div className="flex justify-center">
-                    <h1 className="mt-8">{front}</h1>
+        // <div className="group w-full h-60 p-4 [perspective:1000px]">
+        //     <div className="bg-blue-100 h-full w-full rounded-lg shadow-md transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateX(180deg)]">
+        //         <div className="flex justify-center">
+        //             <h1 className="mt-8">{front}</h1>
+        //         </div>
+        //         <div className="relative [transform:rotateX(180deg)] [backface-visibility:hidden]">
+        //             <h1 className="text-base inset-0 font-medium absolute">{back}</h1>
+        //         </div>
+        //     </div>
+        // </div>   
+        <div class="group h-60 w-full [perspective:1000px]">
+            <div class="bg-blue-100 relative h-full w-full rounded-xl shadow-md transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div class="absolute inset-0 opacity-100 group-hover:opacity-0">
+                    <h1 className="text-center mt-8">{front}</h1>
                 </div>
-                <div className="relative [transform:rotateX(180deg)] [backface-visibility:hidden]">
-                    <h1 className="text-base font-medium absolute top-10">{back}</h1>
+                <div class="absolute inset-0 h-full w-full rounded-xl px-12 text-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                    <div class="flex min-h-full flex-col items-center">
+                        <h1 class="mt-8">{back}</h1>
+                    </div>
                 </div>
             </div>
-        </div>           
+      </div>   
     );
 }
 
