@@ -39,7 +39,6 @@ const deleteFlashCard = (req, res) => {
         })
         .then(queryResult => { 
             res.json({message : "Flashcard deleted from database."});
-            console.log(queryResult);
             Category.updateOne(
                 { categoryName: category },
                 { $pull: { flashCards: deletedDocumentId } }

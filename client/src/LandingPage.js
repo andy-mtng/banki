@@ -24,7 +24,6 @@ function LandingPage() {
             </div>
             <h2 className="mt-24 font-semibold tracking-wider text-black text-center">TRUSTED BY COMPANIES ALL OVER THE WORLD</h2>
             <div className="flex justify-center items-center w-full gap-6 mt-6">
-                <img className="w-48" src={UmbrellaLogo}></img>
                 <img className="w-48" src={BlossomLogo}></img>
                 <img className="w-48" src={VertigoLogo}></img>
                 <img className="w-48" src={PinpointLogo}></img>
