@@ -1,6 +1,6 @@
 # Banki Flash Cards
 
-https://github.com/andy-mtng/banki-flash-cards/assets/104605803/0320833c-192a-42bd-b55f-3358005effa6
+![banki_demo_gif](https://github.com/andy-mtng/banki-flash-cards/assets/104605803/a363dbdd-330e-4860-b8e9-9cce92f85220)
 
 Banki is an interactive web application that helps users study and review various subjects using digital flashcards. With Banki, users can create custom flashcards, organize them into decks, and test their knowledge.
 
